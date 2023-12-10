@@ -16,30 +16,30 @@ app.get("/", (req, res) => {
     })
 })
 
-app.get("/clientes/:id", async (req, res) => {
-    const cliente = await db.selectProduto(req.params.id);
-    res.json(cliente);
+app.get("/produtos/:id", async (req, res) => {
+    const produto = await db.selectProduto(req.params.id);
+    res.json(produto);
 })
 
 
-app.get("/clientes", async (req, res) => {
-    const clientes = await db.selectProdutos();
-    res.json(clientes);
+app.get("/produtos", async (req, res) => {
+    const produtos = await db.selectProdutos();
+    res.json(produtos);
 })
 
-app.post("/clientes", async (req, res) => {
+app.post("/produtos", async (req, res) => {
     await db.insertProduto(req.body);
     res.sendStatus(201);
 })
 
 // update no banco
-app.patch("/clientes/:id", async (req, res) => {
+app.patch("/produtos/:id", async (req, res) => {
     await db.updateProduto(req.params.id, req.body);
     res.sendStatus(200);
 })
 
 
-app.delete("/clientes/:id", async (req, res) => {
+app.delete("/produtos/:id", async (req, res) => {
     await db.deleteProduto(req.params.id);
     res.sendStatus(204);
 })
