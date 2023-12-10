@@ -1,8 +1,15 @@
+CREATE TABLE fornecedor (
+	ID_fornecedor serial,
+	nome varchar(30),
+	contato varchar(20),
+	PRIMARY KEY (ID_fornecedor)
+);
+
 CREATE TABLE produto (
- ID_produto serial,
- Nome_produto varchar(30),
- preco numeric(10, 2),
- PRIMARY KEY (ID_produto)
+ 	ID_produto serial,
+ 	Nome_produto varchar(30),
+ 	preco numeric(10, 2),
+ 	PRIMARY KEY (ID_produto)
 );
 
 
@@ -14,11 +21,15 @@ CREATE TABLE estoque (
  FOREIGN KEY (ID_produto) REFERENCES produto (ID_produto)
 );
 
-CREATE TABLE fornecedor (
-	ID_fornecedor serial,
-	nome varchar(30),
-	contato varchar(20),
-	PRIMARY KEY (ID_fornecedor)
+
+CREATE TABLE funcionario (
+	ID_funcionario serial,
+	cargo varchar(20),
+	Nome varchar(30),
+	cpf varchar(14),
+	salario numeric(12, 2),
+	data_nasc date,
+	PRIMARY KEY (ID_funcionario)
 );
 
 
@@ -52,15 +63,4 @@ CREATE TABLE itens_vendas (
 	Primary key (ID_itens_venda),
 	Foreign key (ID_vendas) references vendas (ID_vendas),
 	Foreign key (ID_produto) references produto (ID_produto)
-)
-
-
-CREATE TABLE funcionario (
-	ID_funcionario serial,
-	cargo varchar(20),
-	Nome varchar(30),
-	cpf varchar(14),
-	salario numeric(12, 2),
-	data_nasc date,
-	PRIMARY KEY (ID_funcionario)
 );

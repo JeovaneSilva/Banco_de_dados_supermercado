@@ -13,13 +13,13 @@ where id_produto = 4
 select p.nome_produto,i.quantidade,i.preco_unitario from vendas v, produto p, itens_vendas i
 where v.id_vendas = i.id_vendas and
 p.id_produto = i.id_produto and
-v.id_vendas = 3
+v.id_vendas = 1
 
 -- nome e cpf do funcionario caixa que fez a venda 2
 select f.nome,f.cpf from funcionario f,vendas v
 where f.id_funcionario = v.id_funcionario and
 f.cargo = 'caixa' and 
-v.id_vendas = 3
+v.id_vendas = 1
 
 -- nome dos funcionarios que fizeram todas as vendas
 select f.cargo,f.nome,v.* from funcionario f, vendas v
@@ -45,7 +45,7 @@ select c.nome,p.nome_produto from produto p, itens_vendas it, vendas v, clientes
 where p.id_produto = it.id_produto and
 v.id_vendas = it.id_vendas and 
 v.id_cliente = c.id_cliente and 
-c.id_cliente = 1
+c.id_cliente = 3
 
 
 -- Listar todas as vendas com detalhes de itens e clientes associados:
