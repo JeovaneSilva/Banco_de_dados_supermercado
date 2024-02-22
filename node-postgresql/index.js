@@ -5,10 +5,14 @@ const db = require("./db");
 const port = process.env.PORT;
 
 const express = require("express");
+const cors = require('cors')
 
 const app = express();
 
-app.use(express.json());
+const bodyParser = require('body-parser')
+app.use(express.json())
+
+app.use(cors())
 
 app.get("/", (req, res) => {
     res.json({
