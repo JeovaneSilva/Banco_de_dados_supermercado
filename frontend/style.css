@@ -57,12 +57,61 @@ section{
     padding: 20px;
     display: grid;
     justify-content: center;
+    align-items: center;
     grid-template-columns: repeat(3, minmax(100px, 200px));
     gap: 2em;
 }
 
 .produtoNaLista{
+    display: none;
+    justify-content: space-around;
+    align-items: center;
     background-color: rgb(238, 171, 15);
     padding: 10px;
     text-transform: uppercase;
+}
+
+.infoIMg{
+    cursor: pointer;
+}
+
+
+.imgLixeira{
+    width: 35px;
+    text-align: right;
+}
+
+
+
+.modalDiv{
+    display: none;
+    width: 500px;
+    height: 200px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.modalDiv p{
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+
+.modalDiv div{
+    display: flex;
+    gap: 5em;
+}
+
+.modalDiv button{
+    width: 80px;
+    height: 30px;
+    background-color: rgb(238, 171, 15);
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
 }

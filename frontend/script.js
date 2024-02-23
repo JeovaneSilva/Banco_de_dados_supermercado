@@ -1,21 +1,44 @@
+
+const infoIMg = document.querySelector('.infoIMg')
 const produtosRes = document.getElementById('produtos')
 const listProdutos = document.getElementById('listProdutos')
+const modalDiv = document.querySelector('.modalDiv')
 
 function MostrarProdutos() {
   
-
   fetch('http://localhost:3000/produtos')
   .then(response => {
     return response.json()
   })
   .then(produtos => {
+    const produtosNaLista = document.querySelector('.produtoNaLista')
     console.log(produtos)
     produtos.map((p) => {
       const div = document.createElement('div')
-      div.setAttribute('class','produtoNaLista')
-      div.innerText = `Nome: ${p.nome_produto} \n
+      const div2 = document.createElement('div')
+      const div3 = document.createElement('div')
+
+      div.setAttribute('class', "produtoNaLista")
+      div.setAttribute('id', p.id_produto)
+      div.style.display="flex"
+
+     
+      div2.setAttribute('class', "infoProduto")
+      div2.innerText = `Nome: ${p.nome_produto} \n
       Preço: ${p.preco}`
+
+      div3.setAttribute('class', "infoIMg")
+      const img = document.createElement('img')
+      img.setAttribute('src', "img/delete_FILL0_wght400_GRAD0_opsz24.png")
+      img.setAttribute('class', "imgLixeira")
+      div3.appendChild(img)
+
+      div.appendChild(div2)
+      div.appendChild(div3)
+    
       listProdutos.appendChild(div)
+
+      
     })
 
   })
@@ -26,6 +49,9 @@ function MostrarProdutos() {
 }
 
 
+MostrarProdutos()
+
+// prettier
 
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById("form-control");
@@ -56,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
           } else {
               throw new Error("Erro ao cadastrar produto");
           }
-          produtosRes.innerHTML=" "
+          listProdutos.innerHTML=""
           MostrarProdutos()
       } catch (error) {
           console.error("Erro:", error.message);
@@ -65,7 +91,30 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-MostrarProdutos()
+
+const imgLixeira = document.getElementById('listProdutos')
+
+imgLixeira.addEventListener('click', async (evt) =>{
+  const produtoId = evt.target.parentNode.parentNode.id
+
+  const resposta = window.confirm("Você deseja excluir esse produto?.");
 
 
-
+ if (resposta) {
+  
+    fetch(`http://localhost:3000/produtos/${produtoId}`, {
+      method: 'DELETE'
+  })
+  .then(response => {
+      if (response.ok) {
+          alert(`Elemento com ID ${produtoId} removido com sucesso.`);
+      } else {
+          alert.error('Erro ao deletar o elemento:', response.statusText);
+      }
+      listProdutos.innerHTML=""
+      MostrarProdutos()
+    })
+    .catch(error => console.error('Erro ao deletar o elemento:', error));
+ } 
+  
+})

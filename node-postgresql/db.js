@@ -17,6 +17,7 @@ async function connect(){
 
     global.connection = pool;
     return pool.connect();
+    
 }
 
 connect();
