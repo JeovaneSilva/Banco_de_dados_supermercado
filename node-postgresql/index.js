@@ -34,7 +34,7 @@ app.get("/produtos", async (req, res) => {
 app.post("/produtos", async (req, res) => {
     await db.insertProduto(req.body);
     res.sendStatus(201);
-})
+}) 
 
 // update no banco
 app.patch("/produtos/:id", async (req, res) => {
@@ -46,7 +46,7 @@ app.patch("/produtos/:id", async (req, res) => {
 app.delete("/produtos/:id", async (req, res) => {
     await db.deleteProduto(req.params.id);
     res.sendStatus(204);
-})
+}) 
 
 app.listen(port);
 
